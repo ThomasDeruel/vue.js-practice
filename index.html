@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Vue.js</title>
+</head>
+<body>
+<h1>Vue.js Practice</h1>
+  <div id="app">
+  {{ message }}
+  </div>
+
+<p>------------------------------</p>
+  <div id="app-2">
+  <span v-bind:title="message">
+    Passez votre souris sur moi pendant quelques secondes
+    pour voir mon titre lié dynamiquement !
+  </span>
+</div>
+<p>------------------------------</p>
+<div id="list">
+  <ol>
+  <li v-for="course in array">
+    {{ course.list }}
+  </li>
+</ol>
+</div>
+<p>------------------------------</p>
+<div id="click">
+  <button v-on:click="click">click</button>
+  <p v-if='success'>{{ message }}</p>
+</div>
+<p>-----------------</p>
+<div id="increment">
+  <button v-on:click="increment">incrément</button>
+  <p>Value : <span>{{value}}</span></p>
+</div>
+<p>-----------------</p>
+<div id="input">
+  <input type="text" v-model="message">
+  <p>{{message}}</p>
+</div>
+<p>-----------------</p>
+<div class="todo"></div>
+<script src="vue.js"></script>
+<script>
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue!'
+  }
+})
+
+var app2 = new Vue({
+  el: '#app-2',
+  data: {
+    message: 'Vous avez affiché cette page le ' + new Date().toLocaleString()
+  }
+})
+var list = new Vue({
+  el: "#list",
+  data:{
+    array:[
+      {list:"patate"},
+      {list:"salade"},
+      {list:"tomate"},
+      {list:"oignon"}
+    ]
+  }
+})
+var click = new Vue({
+  el: '#click',
+  data:{
+    message:"success",
+    success:false
+  },
+  methods: {
+    click: function(){
+      if(click.success){
+        click.success =false
+      }
+      else{
+        click.success =true
+      }
+    }
+  }
+})
+var increment = new Vue({
+  el: "#increment",
+  data:{
+    value:0
+  },
+  methods:{
+    increment: function(){
+      increment.value =increment.value+1
+    }
+  }
+})
+var input = new Vue({
+  el: "#input",
+  data:{
+    message:''
+  }
+})
+</script>
+</body>
+</html>
